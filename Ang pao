@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ang Pao Game</title>
+  <style>
+    body {
+      font-family: Arial;
+      text-align: center;
+      background-color: #ffe4b5;
+      padding: 50px;
+    }
+
+    input, button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    #yesBtn {
+      background-color: red;
+      color: white;
+      border: none;
+      border-radius: 10px;
+    }
+
+    #noBtn {
+      background-color: gray;
+      color: white;
+      border: none;
+      border-radius: 10px;
+    }
+
+    #angPao {
+      margin-top: 30px;
+      font-size: 24px;
+      font-weight: bold;
+      color: #d35400;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Welcome to the Ang Pao Game 🎉</h1>
+
+<p>Enter your name:</p>
+<input type="text" id="userName" placeholder="Your Name">
+
+<p>Do you want an Ang Pao?</p>
+<button id="yesBtn">Yes</button>
+<button id="noBtn">No</button>
+
+<div id="angPao"></div>
+
+<script>
+let clickCount = 0;
+
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const angPaoDiv = document.getElementById("angPao");
+
+noBtn.addEventListener("click", function() {
+    // Increase the size of the Yes button every time No is clicked
+    let currentSize = parseInt(window.getComputedStyle(yesBtn).fontSize);
+    yesBtn.style.fontSize = (currentSize + 5) + "px";
+
+    clickCount++;
+    if (clickCount >= 5) {
+        showAngPao();
+    }
+});
+
+yesBtn.addEventListener("click", showAngPao);
+
+function showAngPao() {
+    let name = document.getElementById("userName").value || "Friend";
+    angPaoDiv.innerHTML = `🎉 Congratulations, ${name}! You get an Ang Pao! 🧧`;
+    // Disable buttons after getting Ang Pao
+    yesBtn.disabled = true;
+    noBtn.disabled = true;
+}
+</script>
+
+</body>
+</html>
